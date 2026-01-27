@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-demo-app
+  labels:
+    app: cicd-demo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cicd-demo-app
+  template:
+    metadata:
+      labels:
+        app: cicd-demo-app
+    spec:
+      containers:
+      - name: cicd-demo-app
+        image: ws5670/pipeline:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: APP_VERSION
+          value: "1.0.0"
+        - name: GIT_COMMIT
+          value: "initial"
+        - name: BUILD_TIME
+          value: "2026-01-27"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 5
