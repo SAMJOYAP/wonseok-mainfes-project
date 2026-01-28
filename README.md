@@ -1,4 +1,5 @@
-# 📦 Manifest Repository (wonseok-mainfes-project)
+# 📦 Manifest Repository 
+(wonseok-mainfes-project)
 
 ## 1. Repository 개요
 
