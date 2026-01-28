@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cicd-demo-app
-        image: ws5670/pipeline:main-9479a6b
+        image: ws5670/pipeline:main-52bbc45
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
