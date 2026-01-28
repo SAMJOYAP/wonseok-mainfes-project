@@ -28,6 +28,17 @@ spec:
           value: "initial"
         - name: BUILD_TIME
           value: "2026-01-27"
+        - name: ARGOCD_URL
+          value: "https://192.168.56.11:31836"
+        - name: ARGOCD_APP
+          value: "pipeline-app"
+        - name: ARGOCD_INSECURE
+          value: "true"
+        - name: ARGOCD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: argocd-token
+              key: ARGOCD_TOKEN
         resources:
           requests:
             memory: "256Mi"
